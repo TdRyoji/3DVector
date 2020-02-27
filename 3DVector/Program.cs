@@ -22,6 +22,12 @@ namespace _3DVector
                 + ", " + this.Y.ToString()
                 + ", " + this.Z.ToString() + ")";
         }
+
+        public double Abs()
+        {
+            return Math.Sqrt(
+                this.X * this.X + this.Y * this.Y + this.Z * this.Z);
+        }
     }
 
     class Program
@@ -30,6 +36,10 @@ namespace _3DVector
         {
             Vector v1 = new Vector();
             Console.WriteLine("v1 = " + v1.ToString());
+
+            Vector v2 = new Vector(1, 2, 2);
+            Console.Write("v2 = " + v2.ToString() + " |v2| = ");
+            Console.WriteLine(v2.Abs());
         }
     }
 }
