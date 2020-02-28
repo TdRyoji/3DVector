@@ -43,6 +43,17 @@ namespace _3DVector
         {
             return new Vector(v1.X - v2.X, v1.Y - v2.Y, v1.Z - v2.Z);
         }
+
+        public static Vector operator *(Vector v1, Vector v2)
+        {
+            return new Vector(v1.Y * v2.Z - v2.Y * v1.Z,
+                v1.Z * v2.X - v2.Z * v1.X, v1.X * v2.Y - v2.X * v1.Y);
+        }
+
+        public static double InnerProduct(Vector v1, Vector v2)
+        {
+            return v1.X * v2.X + v1.Y * v2.Y + v1.Z * v2.Z;
+        }
     }
 
     class Program
@@ -57,9 +68,14 @@ namespace _3DVector
             Console.WriteLine(v2.Abs());
 
             Vector v3 = -v2;
-            Console.Write("v3 = " + v3.ToString() +
+            Console.WriteLine("v3 = " + v3.ToString() +
                 "   v2 + v3 = " + (v2 + v3).ToString() +
                 " v2 - v3 = " + (v2 - v3).ToString());
+
+            Vector v4 = new Vector(3, 1, -2);
+            Console.WriteLine("v4 = " + v4.ToString());
+            Console.WriteLine("v2・v4 = " + (Vector.InnerProduct(v2, v4))
+                + " v2 * v4 = " + (v2 * v4).ToString());
         }
     }
 }
