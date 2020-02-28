@@ -54,6 +54,22 @@ namespace _3DVector
         {
             return v1.X * v2.X + v1.Y * v2.Y + v1.Z * v2.Z;
         }
+
+        public override bool Equals(object obj)
+        {
+            Vector v = obj as Vector;
+            if (v == null) return false;
+
+            return this.X == v.X && this.Y == v.Y && this.Z == v.Z;
+        }
+
+        public override int GetHashCode()
+        {
+            int x = this.X.GetHashCode();
+            int y = this.Y.GetHashCode();
+            int z = this.Z.GetHashCode();
+            return (x + y + z) ^ (x - y + z) ^ (x - y - z);
+        }
     }
 
     class Program
@@ -71,6 +87,8 @@ namespace _3DVector
             Console.WriteLine("v3 = " + v3.ToString() +
                 "   v2 + v3 = " + (v2 + v3).ToString() +
                 " v2 - v3 = " + (v2 - v3).ToString());
+
+            Console.WriteLine("v1 = v2 + v3 : {0}", v1.Equals(v2 + v3));
 
             Vector v4 = new Vector(3, 1, -2);
             Console.WriteLine("v4 = " + v4.ToString());
